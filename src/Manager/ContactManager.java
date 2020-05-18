@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ContactManager {
     private final ArrayList<Contact> contacts;
@@ -36,85 +35,75 @@ public class ContactManager {
         return  false;
     }
     public void editGroup(String phoneNumber,String newGroup){
-        if( checkPhoneNumber(phoneNumber)) {
             for (Contact contact : contacts){
                 if( contact.getPhoneNumber().equals(phoneNumber)) {
                     contact.setGroup(newGroup);
                     return;
                 }
             }
-
-        } else
-            System.out.println(PHONE_WRONG);
     }
     public void editBirthday(String phoneNumber,String birthday){
-        if( checkPhoneNumber(phoneNumber)) {
             for (Contact contact : contacts){
                 if( contact.getPhoneNumber().equals(phoneNumber)) {
                     contact.setBirthday(birthday);
                     return;
                 }
             }
-
-        } else
-            System.out.println(PHONE_WRONG);
     }
     public void editAddress(String phoneNumber,String newAddress){
-        if( checkPhoneNumber(phoneNumber)) {
             for (Contact contact : contacts){
                 if( contact.getPhoneNumber().equals(phoneNumber)) {
                     contact.setAddress(newAddress);
                     return;
                 }
             }
-
-        } else
-            System.out.println(PHONE_WRONG);
     }
     public void editEmail(String phoneNumber,String newEmail){
-        if( checkPhoneNumber(phoneNumber)) {
             for (Contact contact : contacts){
                 if( contact.getPhoneNumber().equals(phoneNumber)) {
                     contact.setEmail(newEmail);
                     return;
                 }
             }
-
-        } else
-            System.out.println(PHONE_WRONG);
     }
     public void editName(String phoneNumber,String newName){
-        if( checkPhoneNumber(phoneNumber)) {
             for (Contact contact : contacts){
                 if( contact.getPhoneNumber().equals(phoneNumber)) {
                     contact.setName(newName);
                     return;
                 }
             }
-
-        } else
-            System.out.println(PHONE_WRONG);
     }
     public void editGender(String phoneNumber,String newGender){
-        if( checkPhoneNumber(phoneNumber)) {
             for (Contact contact : contacts){
                 if( contact.getPhoneNumber().equals(phoneNumber)) {
                     contact.setGender(newGender);
                     return;
                 }
             }
-
-        } else
-            System.out.println(PHONE_WRONG);
+    }
+    public void removeContact(String phoneNumber){
+        for (Contact contact : contacts){
+            if( contact.getPhoneNumber().equals(phoneNumber)) {
+                contacts.remove(contact);
+                return;
+            }
+        }
     }
     public void display(){
         for(Contact contact : contacts){
             System.out.println(contact.toString());
         }
     }
+    public void search(String phoneNumber){
+        for (Contact contact : contacts){
+            if( contact.getPhoneNumber().contains(phoneNumber))
+                System.out.println( contact.toString());
+        }
+    }
     public void saveFile(){
         try {
-            FileOutputStream f_o = new FileOutputStream("contact.csv");
+            FileOutputStream f_o = new FileOutputStream("E:\\Codegym\\Module 2\\Week9\\ThiPassModule2\\contact.txt");
             for (Contact contact : contacts) {
                 byte[] bytes = contact.toString().getBytes();
                 byte[] down = "\n".getBytes();
@@ -128,7 +117,7 @@ public class ContactManager {
     }
     public void readFile(){
         try {
-            String link = "E:\\Codegym\\Module 2\\Week9\\ThiPassModule2\\contact.csv";
+            String link = "E:\\Codegym\\Module 2\\Week9\\ThiPassModule2\\contact.txt";
             FileReader path = new FileReader(link);
             BufferedReader br = new BufferedReader(path);
             String line = "";
